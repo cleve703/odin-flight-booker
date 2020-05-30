@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_184211) do
   end
 
   create_table "flights", force: :cascade do |t|
-    t.datetime "departure"
+    t.datetime "departure_time"
     t.integer "duration"
     t.integer "origin_id", null: false
     t.integer "destination_id", null: false

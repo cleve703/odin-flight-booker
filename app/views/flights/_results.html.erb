@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Origin Airport</th>
+    <th>Destination Airport</th>
+    <th>Departure Date & Time</th>
+    <th>Flight Duration (mins)</th>
+  </tr>
+  <% @flights.each do |flight| %>
+  <tr>
+    <td><%= flight.origin.airport_code %></td>
+    <td><%= flight.destination.airport_code %></td>
+    <td><%= flight.departure_time %></td>
+    <td><%= flight.duration %></td>
+  </tr>
+  <% end %>
+</table>

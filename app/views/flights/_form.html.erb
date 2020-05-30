@@ -1,0 +1,11 @@
+<%= form_with(method: 'get') do %>
+  <%= label_tag(:origin_airport, 'Origin airport code:') %>
+  <%= collection_select(:origin_airport, :airport_code, Airport.all, :id, :airport_code) %>
+  <%= label_tag(:destination_airport, 'Destination airport code:') %>
+  <%= collection_select(:destination_airport, :airport_code, Airport.all, :id, :airport_code) %>
+  <%= label_tag(:num_passengers, 'Number of passengers:') %>
+  <%= select_tag(:num_passengers, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]])) %>
+  <%= label_tag(:flight_date, 'Flight date:') %>
+  <%= select_tag(:flight_date, options_for_select(Flight.flight_dates)) %>
+  <%= submit_tag('Search') %>
+<% end %>
