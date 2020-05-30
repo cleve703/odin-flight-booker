@@ -1,11 +1,11 @@
-<%= form_with(method: 'get') do %>
-  <%= label_tag(:origin_airport, 'Origin airport code:') %>
-  <%= collection_select(:origin_airport, :airport_code, Airport.all, :id, :airport_code) %>
-  <%= label_tag(:destination_airport, 'Destination airport code:') %>
-  <%= collection_select(:destination_airport, :airport_code, Airport.all, :id, :airport_code) %>
-  <%= label_tag(:num_passengers, 'Number of passengers:') %>
-  <%= select_tag(:num_passengers, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]])) %>
-  <%= label_tag(:flight_date, 'Flight date:') %>
-  <%= select_tag(:flight_date, options_for_select(Flight.flight_dates)) %>
-  <%= submit_tag('Search') %>
+<%= form_with model: @flight, method: 'get', local: true do |f| %>
+  <%= f.label(:origin_airport, 'Origin airport code:') %>
+  <%= f.collection_select(:origin_airport, Airport.all, :id, :airport_code) %>
+  <%= f.label(:destination_airport, 'Destination airport code:') %>
+  <%= f.collection_select(:destination_airport, Airport.all, :id, :airport_code) %>
+  <%= f.label(:num_passengers, 'Number of passengers:') %>
+  <%= f.select(:num_passengers, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]])) %>
+  <%= f.label(:departure_date, 'Departure date:') %>
+  <%= f.select(:departure_date, options_for_select(Flight.departure_dates_formatted)) %>
+  <%= f.submit('Search') %>
 <% end %>
