@@ -1,11 +1,11 @@
 <%= form_with model: @flight, method: 'get', local: true do |f| %>
   <%= f.label(:origin_airport, 'Origin airport code:') %>
-  <%= f.collection_select(:origin_airport, Airport.all, :id, :airport_code) %>
+  <%= f.collection_select(:origin_airport, Airport.all, :id, :airport_code, {selected: @search_criteria[:origin_airport]}) %>
   <%= f.label(:destination_airport, 'Destination airport code:') %>
-  <%= f.collection_select(:destination_airport, Airport.all, :id, :airport_code) %>
+  <%= f.collection_select(:destination_airport, Airport.all, :id, :airport_code, {selected: @search_criteria[:destination_airport]}) %>
   <%= f.label(:num_passengers, 'Number of passengers:') %>
-  <%= f.select(:num_passengers, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]])) %>
+  <%= f.select(:num_passengers, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]], @search_criteria[:num_passengers])) %>
   <%= f.label(:departure_date, 'Departure date:') %>
-  <%= f.select(:departure_date, options_for_select(Flight.departure_dates_formatted)) %>
+  <%= f.select(:departure_date, options_for_select(Flight.departure_dates_formatted, @search_criteria[:departure_date])) %>
   <%= f.submit('Search') %>
 <% end %>
