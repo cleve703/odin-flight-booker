@@ -1,3 +1,19 @@
+<h2>Add passenger information</h2>
+<table>
+  <tr>
+    <th>Flight number</th>
+    <th>Origin airport</th>
+    <th>Destination airport</th>
+    <th>Departure date & time</th>
+  </tr>
+  <tr>
+    <td><%= @flight.id %></td>
+    <td><%= @flight.origin.airport_code %></td>
+    <td><%= @flight.destination.airport_code %></td>
+    <td><%= @flight.departure_time %></td>
+  </tr>
+</table>
+
 <%= form_with model: @booking, url: bookings_path, local: true do |f| %>
   <ul>
     <%= f.fields_for :passengers do |passengers_form| %>
@@ -10,5 +26,6 @@
       </li>
     <% end %>
   </ul>
+  <%= hidden_field_tag :flight_id, @flight_id %>
   <%= f.submit('Add passengers') %>
 <% end %>

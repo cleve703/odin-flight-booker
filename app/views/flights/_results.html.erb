@@ -1,7 +1,9 @@
 <%= form_with model: @bookings, method: 'get', url: '/bookings/new', local: true do %>
   <table>
     <tr>
-      <th>Select</th>
+      <% if @select == true %>
+        <th>Select</th>
+      <% end %>
       <th>Origin Airport</th>
       <th>Destination Airport</th>
       <th>Departure Date & Time</th>
@@ -9,7 +11,9 @@
     </tr>
     <% @flights.each do |flight| %>
     <tr>
-      <td><%= radio_button_tag(:flight, flight.id) %>
+      <% if @select == true %>
+        <td><%= radio_button_tag(:flight, flight.id) %></td>
+      <% end %>
       <td><%= flight.origin.airport_code %></td>
       <td><%= flight.destination.airport_code %></td>
       <td><%= flight.departure_time %></td>
@@ -20,5 +24,6 @@
     </tr>
     <% end %>
   </table>
+      <%= will_paginate @flights %>
   <%= submit_tag('Book a flight')%>
 <% end %>
