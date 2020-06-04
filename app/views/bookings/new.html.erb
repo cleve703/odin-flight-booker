@@ -26,6 +26,6 @@
       </li>
     <% end %>
   </ul>
-  <%= hidden_field_tag :flight_id, @flight_id %>
+  <%= f.hidden_field(:flight_id, value: @flight_id) %>
   <%= f.submit('Add passengers') %>
 <% end %>

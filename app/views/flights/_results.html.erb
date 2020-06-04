@@ -1,4 +1,4 @@
-<%= form_with model: @bookings, method: 'get', url: '/bookings/new', local: true do %>
+<%= form_with model: @bookings, scope: 'booking', method: 'get', url: '/bookings/new', local: true do |f| %>
   <table>
     <tr>
       <% if @select == true %>
@@ -7,19 +7,19 @@
       <th>Origin Airport</th>
       <th>Destination Airport</th>
       <th>Departure Date & Time</th>
-      <th>Flight Duration (mins)</th>
+      <th>Arrival Date & Time</th>
     </tr>
     <% @flights.each do |flight| %>
     <tr>
       <% if @select == true %>
-        <td><%= radio_button_tag(:flight, flight.id) %></td>
+        <td><%= f.radio_button(:flight_id, flight.id) %></td>
       <% end %>
       <td><%= flight.origin.airport_code %></td>
       <td><%= flight.destination.airport_code %></td>
       <td><%= flight.departure_time %></td>
-      <td><%= flight.duration %></td>
+      <td><%= flight.departure_time + flight.duration.minutes %></td>
       <% if !@selected_num_passengers.nil? %>
-        <%= hidden_field_tag(:num_passengers, @selected_num_passengers) %>
+        <%= f.hidden_field(:num_passengers, :value => @selected_num_passengers) %>
       <% end %>
     </tr>
     <% end %>

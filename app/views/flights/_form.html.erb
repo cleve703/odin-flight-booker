@@ -1,4 +1,4 @@
-<%= form_with model: @flight, method: 'get', local: true do |f| %>
+<%= form_with model: @flight, scope: 'flight', method: 'get', local: true do |f| %>
   <%= f.label(:origin_airport, 'Origin airport code:') %>
   <%= f.collection_select(:origin_airport, Airport.all, :id, :airport_code, {selected: @search_criteria[:origin_airport]}) %>
   <%= f.label(:destination_airport, 'Destination airport code:') %>
