@@ -16,10 +16,9 @@
   </tr>
 </table>
 <h3>Passengers</h3>
-<ul>
 <% @booking.passengers.each do |passenger| %>
+<ul>
   <li>Name: <%= passenger.name %></li>
   <li>Email: <%= passenger.email %></li>
-  <hr>
-<% end %>
 </ul>
+<% end %>
