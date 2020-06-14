@@ -15,7 +15,7 @@ class FlightsController < ApplicationController
       @flights = Flight.order(:departure_time).paginate(page: params[:page])
       @search_criteria = { origin_airport: '1', 
         destination_airport: '1', 
-        departure_date: Date.today, 
+        departure_date: Date.today.strftime("%m/%d/%Y"), 
         num_passengers: '1' }
       @select = false
     end
