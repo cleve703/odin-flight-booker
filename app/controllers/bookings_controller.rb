@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     @flight = Flight.find_by(id: booking_params[:flight_id].to_i)
     @booking = @flight.bookings.create!(flight_id: @flight.id)
     @booking.create_associated_passengers(booking_params[:passengers_attributes])
+    PassengerMailer.thank_you_email(@booking.passengers).deliver
     render :show
   end
 
